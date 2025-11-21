@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Данияр Каналиев | Product Lead</title>
+    <title>Каналиев Данияр | CPO & Product Executive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
+        /* --- CSS Variables (Light Theme) --- */
         :root {
-            /* Современная цветовая палитра */
-            --bg-body: #F3F4F6;
-            --text-main: #111827;
-            --text-secondary: #6B7280;
-            --accent: #2563EB; /* Royal Blue */
-            --accent-hover: #1D4ED8;
-            --white: #FFFFFF;
-            --glass: rgba(255, 255, 255, 0.7);
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
-            --radius: 24px;
-        }
+            /* Светлый фон: белый + мягкие градиенты */
+            --bg-main: #f8fafc; 
+            --bg-secondary: #ffffff;
+            
+            /* Цвета текста (темные для контраста) */
+            --text-primary: #1e293b; /* Темно-синий серый */
+            --text-secondary: #64748b; /* Средний серый */
+            
+            /* Акцентный синий (яркий, но приятный глазу) */
+            --accent: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #3b82f6, #2563eb);
+            
+            /* Эффекты стекла для светлой темы */
+            /* Белое полупрозрачное стекло */
+            --glass-bg: rgba(255, 255, 255, 0.65); 
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --blur-strength: 20px;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.06); /* Мягкая тень */
 
-        /* Плавная прокрутка для всей страницы */
-        html {
-            scroll-behavior: smooth;
+            --font-main: 'Inter', sans-serif;
         }
 
         * {
@@ -34,497 +39,586 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
             overflow-x: hidden;
+            /* Фоновые пятна (светлые) */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(37, 99, 235, 0.1), transparent 40%);
+            background-attachment: fixed;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 700;
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
         ul { list-style: none; }
-        img { max-width: 100%; display: block; }
 
-        /* Контейнер */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* --- Animations --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
         }
 
-        /* --- HEADER --- */
-        .header {
-            position: fixed;
-            top: 20px;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+        /* --- Glassmorphism Card Style (Light) --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-strength));
+            -webkit-backdrop-filter: blur(var(--blur-strength));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
         }
 
-        .nav-box {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 15px 30px;
-            border-radius: 100px;
+        /* --- Header / Hero --- */
+        header {
+            min-height: 90vh;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
         }
 
-        .logo {
-            font-size: 1.2rem;
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Photo Styling (Стеклянная капсула) --- */
+        .photo-wrapper {
+            position: relative;
+            /* Увеличил размер контейнера */
+            width: 280px; 
+            height: 280px;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            /* Стеклянная подложка */
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.15);
+        }
+
+        .profile-img {
+            width: 92%; /* Чуть меньше контейнера, чтобы был "воздух" */
+            height: 92%;
+            object-fit: cover;
+            border-radius: 50%;
+            /* ВАЖНО: Замените avatar.jpg на имя вашего файла с фото */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Декоративный нимб */
+        .photo-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(255, 255, 255, 0));
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        h1 {
+            font-size: 4rem;
             font-weight: 800;
-            color: var(--accent);
-            letter-spacing: -0.5px;
-        }
-
-        .nav-list {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-list a {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text-main);
-        }
-
-        .nav-list a:hover {
-            color: var(--accent);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 100px;
-            background: radial-gradient(circle at 50% 0%, #E0E7FF 0%, transparent 50%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
             line-height: 1.1;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #111827, #2563EB);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
-        .hero-content h2 {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
+        p.subtitle {
+            font-size: 1.6rem;
             font-weight: 500;
-            margin-bottom: 30px;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            background: rgba(37, 99, 235, 0.08);
+            padding: 8px 24px;
+            border-radius: 50px;
+            display: inline-block;
         }
 
-        .hero-content p {
-            font-size: 1.1rem;
+        .hero-desc {
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 500px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
         }
 
         .btn {
-            padding: 16px 32px;
-            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 45px;
+            background: var(--accent-gradient);
+            color: white;
             font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); /* Цветная тень */
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.45);
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        /* --- Container --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
         }
 
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
+        /* --- Section Styles --- */
+        section { margin-bottom: 120px; }
 
-        .btn-secondary {
-            background: var(--white);
-            color: var(--text-main);
-            border: 1px solid #E5E7EB;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .hero-img-wrap {
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            color: var(--text-primary);
             position: relative;
+            display: inline-block;
         }
-
-        .hero-img-wrap::before {
+        
+        h2::after {
             content: '';
             position: absolute;
-            inset: -20px;
-            background: linear-gradient(45deg, #2563EB, #60A5FA);
-            border-radius: 40px;
-            opacity: 0.2;
-            filter: blur(20px);
-            z-index: -1;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+            opacity: 0.3;
         }
 
-        .hero-img-wrap img {
-            border-radius: 32px;
-            transform: rotate(-2deg);
-            transition: 0.5s;
-            box-shadow: var(--shadow);
-        }
-
-        .hero-img-wrap:hover img {
-            transform: rotate(0deg) scale(1.02);
-        }
-
-        /* --- SECTIONS --- */
-        section {
-            padding: 100px 0;
-            /* Отступ для якоря, чтобы хедер не перекрывал заголовок */
-            scroll-margin-top: 80px; 
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        /* --- ABOUT --- */
-        .about-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* --- EXPERIENCE (TIMELINE) --- */
+        /* --- Experience Cards (Clean Light) --- */
         .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+        }
+        
+        .timeline::before {
+             content: '';
+             position: absolute;
+             left: 24px;
+             top: 25px;
+             bottom: 25px;
+             width: 2px;
+             background: #e2e8f0; /* Светло-серая линия */
+             z-index: 0;
         }
 
-        .timeline-item {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-            border-left: 5px solid var(--accent);
-            transition: transform 0.3s;
+        .job-card {
+            padding: 40px;
+            margin-left: 60px; /* Отступ от линии */
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.7); /* Чуть более непрозрачный фон для читаемости */
         }
 
-        .timeline-item:hover {
-            transform: translateX(10px);
+        .job-card:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .job-card::after {
+            content: '';
+            position: absolute;
+            left: -69px; 
+            top: 40px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px #f1f5f9; /* Обводка под цвет фона */
         }
 
-        .date {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .job-title {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .company {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .role {
+            font-size: 1.1rem;
             color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 15px;
+            font-weight: 600;
             display: block;
+            margin-top: 5px;
         }
 
-        /* --- SKILLS --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-card {
-            background: var(--white);
-            padding: 30px;
+        .period {
+            background: #eff6ff; /* Очень светлый синий */
+            color: var(--accent);
+            padding: 6px 16px;
             border-radius: 20px;
-            box-shadow: var(--shadow);
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .skill-card h3 {
-            margin-bottom: 20px;
-            border-bottom: 2px solid #F3F4F6;
-            padding-bottom: 10px;
+        .job-desc ul {
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .job-desc li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+        
+        .job-desc li::marker { color: var(--accent); }
+
+        .highlight {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
-        .tags {
+        /* --- Skills & Education --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .tag {
-            background: #F3F4F6;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.9rem;
+            background: #fff;
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 12px;
             font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
-
-        /* --- CONTACTS --- */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact-box {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-        }
-
-        .contact-box:hover {
-            transform: translateY(-5px);
+        
+        .tag:hover {
+            border-color: var(--accent);
             color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.15);
         }
 
-        .contact-box span {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 15px;
+        .edu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        /* --- MOBILE --- */
-        @media (max-width: 768px) {
-            .nav-box {
-                flex-direction: column;
-                padding: 15px;
-                gap: 15px;
-            }
-            
-            .nav-list {
-                gap: 15px;
-                font-size: 0.9rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+        .edu-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .edu-item:last-child { border-bottom: none; }
 
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 40px;
-            }
+        .edu-institution {
+             font-weight: 700;
+             font-size: 1.1rem;
+             color: var(--text-primary);
+             margin-bottom: 5px;
+        }
+        .edu-degree {
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        .edu-year {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
 
-            .hero-content h1 { font-size: 2.5rem; }
-            .btn-group { justify-content: center; }
+        /* --- Contacts --- */
+        .contact-section {
+            text-align: center;
+            padding: 80px 40px;
+        }
+        
+        .contact-links-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 10px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .contact-link:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        /* --- Mobile Optimization (Верстка) --- */
+        @media (max-width: 900px) {
+            h1 { font-size: 3rem; }
+            .grid-2 { grid-template-columns: 1fr; gap: 60px; }
             
-            .hero-img-wrap img {
-                max-width: 300px;
-                margin: 0 auto;
-                transform: rotate(0);
-            }
+            /* Адаптация таймлайна для планшетов */
+            .job-card { margin-left: 50px; padding: 30px; }
+            .job-card::after { left: -59px; }
+        }
+        
+        @media (max-width: 600px) {
+             /* Хедер */
+             header { padding: 40px 20px; min-height: auto; }
+             .photo-wrapper { width: 200px; height: 200px; margin-bottom: 2rem; }
+             h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+             p.subtitle { font-size: 1.1rem; padding: 6px 16px; margin-bottom: 1rem; }
+             .hero-desc { font-size: 1rem; margin-bottom: 30px; }
+             
+             /* Секции */
+             section { margin-bottom: 80px; }
+             h2 { font-size: 2rem; margin-bottom: 30px; }
+             
+             /* Таймлайн на мобильном: убираем линию слева для экономии места */
+             .timeline::before { display: none; }
+             .job-card { margin-left: 0; padding: 25px; }
+             .job-card::after { display: none; } /* Убираем точки */
+             
+             .job-header { flex-direction: column; gap: 10px; }
+             .period { display: inline-block; margin-top: 5px; font-size: 0.85rem;}
+             
+             /* Контакты */
+             .contact-links-container { flex-direction: column; gap: 15px; }
+             .contact-link { width: 100%; display: block; }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="container">
-            <div class="nav-box">
-                <div class="logo">DK.</div>
-                <nav>
-                    <ul class="nav-list">
-                        <li><a href="#about">Обо мне</a></li>
-                        <li><a href="#experience">Опыт</a></li>
-                        <li><a href="#skills">Навыки</a></li>
-                        <li><a href="#contact">Контакты</a></li>
-                    </ul>
-                </nav>
+    <header>
+        <div class="hero-content fade-in-section">
+            <div class="photo-wrapper">
+                <img src="avatar.jpg" alt="Каналиев Данияр" class="profile-img">
             </div>
+            
+            <h1>Каналиев Данияр</h1>
+            <p class="subtitle">CPO / CEO / Лидер цифровой трансформации</p>
+            <p class="hero-desc">
+                13 лет опыта в Fintech и Insurtech. Создаю продукты №1 на рынке, внедряю AI и масштабирую кросс-функциональные команды.
+            </p>
+            <a href="mailto:kanalievdu@bk.ru" class="btn">Связаться со мной</a>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1>Данияр Каналиев</h1>
-                <h2>Product Lead / Руководитель направления</h2>
-                <p>Опыт более 13 лет. Создаю digital-продукты в FinTech и страховании, управляю командами и внедряю AI-технологии.</p>
-                <div class="btn-group">
-                    <a href="#contact" class="btn btn-primary">Связаться</a>
-                    <a href="mailto:kanalievdu@bk.ru" class="btn btn-secondary">Написать Email</a>
-                </div>
-            </div>
-            <div class="hero-img-wrap">
-                <img src="photo.jpg" alt="Данияр Каналиев">
-            </div>
-        </div>
-    </section>
+    <div class="container">
 
-    <section id="about">
-        <div class="container">
-            <div class="about-card">
-                <h2 class="section-title">Обо мне</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 20px;">
-                    Я специализируюсь на управлении продуктами в финансовом секторе. Мой опыт включает работу с большими данными, рекомендательными системами (RecSys) и интеграцию AI-технологий в бизнес-процессы.
-                </p>
-                <p style="font-size: 1.1rem;">
-                    Умею выстраивать работу больших кросс-функциональных команд (до 38 человек) и развивать продуктовую культуру через CustDev и Jobs-to-be-Done.
-                </p>
-            </div>
-        </div>
-    </section>
+        <section class="fade-in-section glass-card" style="padding: 40px;">
+            <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--accent);">Краткая биография</h3>
+            <p style="font-size: 1.1rem; color: var(--text-secondary); leading-trim: both;">
+                <strong style="color: var(--text-primary);">Обо мне:</strong> Опытный руководитель (CPO/CIO/CEO) с фокусом на стратегическое развитие и технологические инновации. Специализируюсь на создании digital-продуктов с нуля и трансформации текущих бизнес-процессов в крупных финансовых структурах (СОГАЗ, Сбер, Промсвязьбанк). Эксперт в Agile, управлении данными и внедрении искусственного интеллекта. Умею строить сильные команды и доводить проекты до финансового результата.
+            </p>
+        </section>
 
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Опыт работы</h2>
+        <section>
+            <h2 class="fade-in-section">Профессиональный опыт</h2>
             <div class="timeline">
+
+                <div class="job-card glass-card fade-in-section">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">СОГАЗ</div>
+                            <span class="role">Product Lead (Имущественное страхование)</span>
+                        </div>
+                        <span class="period">Июль 2025 — Наст. время</span>
+                    </div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><span class="highlight">Стратегия и Запуск:</span> Управляю созданием digital-продуктов. Запустил новый продукт от идеи до релиза всего за 2 месяца.</li>
+                            <li><span class="highlight">Технологии и AI:</span> Внедрил «ИИ-ассистента» для андеррайтеров (анализ рисков на основе данных) и запустил проект удаленного осмотра имущества.</li>
+                            <li><span class="highlight">Архитектура:</span> Разработка микросервисной архитектуры и API для масштабируемости решений.</li>
+                            <li><span class="highlight">Команда:</span> Формирование и развитие кросс-функциональной команды (продукты, разработка, аналитика).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-card glass-card fade-in-section">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Сбер</div>
+                            <span class="role">Руководитель направления (Деп. данных и рекомендательных систем)</span>
+                        </div>
+                        <span class="period">Сент. 2024 — Июнь 2025</span>
+                    </div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><span class="highlight">Масштабирование:</span> Оптимизировал процессы предзаполнения данных в топ-20 дочерних компаниях (95% покрытия клиентских сценариев).</li>
+                            <li><span class="highlight">Инновации:</span> Участие в разработке AI-агентов для автоматизации рутинных операций и анализа данных.</li>
+                            <li><span class="highlight">Экосистема:</span> Внедрение единой системы глобальных адресов и формы единого согласия, что повысило прозрачность коммуникаций.</li>
+                            <li><span class="highlight">Метрики:</span> Управление LTV, CAC и конверсиями. Повышение рентабельности продуктов через Data-driven подход.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-card glass-card fade-in-section">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Промсвязьбанк (ПАО)</div>
+                            <span class="role">Product Lead (МСБ: Зарплатные проекты, РКО, СБП)</span>
+                        </div>
+                        <span class="period">Янв. 2022 — Сент. 2024</span>
+                    </div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><span class="highlight">Рыночный прорыв:</span> 1-е место в рейтинге Markswebb (рост с 9-го места). Продукт стал лучшим на рынке.</li>
+                            <li><span class="highlight">Бизнес-результаты:</span> Рост портфеля зарплатных карт на 10%, базы активных клиентов на 5%, ФОТ на 20%. Оптимизация расходов на 10%.</li>
+                            <li><span class="highlight">Управление:</span> Руководство 3 командами (38 человек). Полный цикл разработки по Agile.</li>
+                            <li><span class="highlight">Инновации:</span> Выпуск первой цифровой зарплатной карты, реализация выплат одним реестром в разные банки.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-card glass-card fade-in-section">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Сбер</div>
+                            <span class="role">Руководитель сектора / Project Manager</span>
+                        </div>
+                        <span class="period">Апр. 2015 — Янв. 2022</span>
+                    </div>
+                    <div class="job-desc">
+                        <ul>
+                            <li><span class="highlight">Проектное управление:</span> Реализация кампусных проектов с ВУЗами и госструктурами Москвы. Внедрение единых читательских билетов и пропусков.</li>
+                            <li><span class="highlight">Lean и Оптимизация:</span> Вошел в ТОП-15 начальников секторов по России. Разработал чат-бота на Python для поддержки сотрудников.</li>
+                            <li><span class="highlight">Продажи:</span> Стабильное перевыполнение планов (140-168%) на позициях руководителя группы продаж.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <div class="grid-2">
                 
-                <div class="timeline-item">
-                    <span class="date">Июль 2025 — Настоящее время</span> <h3 class="job-title">Product Lead</h3>
-                    <span class="company">СОГАЗ</span>
-                    <p>Управление командой, создание digital-продуктов в имущественном страховании. Масштабирование на новые рынки, разработка микросервисной архитектуры [cite: 8-14].</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="date">Январь 2022 — Сентябрь 2024</span> <h3 class="job-title">Руководитель направления (Data & RecSys)</h3>
-                    <span class="company">Сбер</span>
-                    <p>Управление 3 командами (38 человек). Создание сквозного компонента рекомендательных систем. Внедрение AI-агентов для обработки запросов и оптимизации процессов предзаполнения данных, сократившее время обработки[cite: 22, 36, 37, 40].</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="date">Апрель 2015 — Январь 2022</span> <h3 class="job-title">Product Lead</h3>
-                    <span class="company">Промсвязьбанк (ПСБ)</span>
-                    <p>Продукты: Зарплатные проекты, ЗКО, СБП. Вывел продукт на 1 место в рейтинге Markswebb (рост с 9 места). Запустил цифровой выпуск зарплатных карт и перевод реестра в один клик[cite: 45, 52, 54].</p>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="date">Декабрь 2012 — Март 2015</span> <h3 class="job-title">Управляющий магазином</h3>
-                    <span class="company">Связной</span>
-                    <p>Оперативное управление магазинами, выполнение целевых показателей, участие в проекте реализации карт Связного в сети продаж[cite: 81, 82].</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Навыки</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Управление</h3>
-                    <div class="tags">
+                <div class="fade-in-section">
+                    <h2>Навыки</h2>
+                    <div class="skill-tags">
                         <span class="tag">Product Management</span>
+                        <span class="tag">Стратегическое планирование</span>
                         <span class="tag">Agile / Scrum</span>
-                        <span class="tag">Team Leadership</span>
-                        <span class="tag">Стратегия</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Tech & Data</h3>
-                    <div class="tags">
-                        <span class="tag">Big Data</span>
-                        <span class="tag">AI / ML</span>
-                        <span class="tag">Python (Basic)</span>
-                        <span class="tag">Jira / Confluence</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Маркетинг</h3>
-                    <div class="tags">
+                        <span class="tag">Управление командой</span>
+                        <span class="tag">AI & Big Data</span>
                         <span class="tag">Digital Marketing</span>
-                        <span class="tag">CustDev</span>
-                        <span class="tag">UI / UX</span>
+                        <span class="tag">UX/UI</span>
+                        <span class="tag">Python (Basic)</span>
                         <span class="tag">Unit Economics</span>
+                        <span class="tag">CustDev / JTBD</span>
                     </div>
                 </div>
+
+                <div class="fade-in-section">
+                    <h2>Образование</h2>
+                    <div class="edu-list glass-card" style="padding: 30px;">
+                        <div class="edu-item">
+                            <div class="edu-institution">Корпоративный университет Сбербанка</div>
+                            <div class="edu-degree">MBA (Сбербанк Mini MBA)</div>
+                            <div class="edu-year">2018</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-institution">Оренбургский государственный университет</div>
+                            <div class="edu-degree">Магистр, Экономика (Оценка и управление стоимостью бизнеса)</div>
+                            <div class="edu-year">2024</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-institution">Оренбургский государственный аграрный университет</div>
+                            <div class="edu-degree">Экономика, Финансы и кредит</div>
+                            <div class="edu-year">2015</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="education" style="background: var(--white); padding: 60px 0;">
-        <div class="container">
-            <h2 class="section-title" style="margin-bottom: 40px;">Образование</h2>
-            <div style="display: grid; gap: 20px; max-width: 800px; margin: 0 auto;">
-                <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                    <strong>Яндекс Практикум (2024)</strong> — Системный анализ
-                </div>
-                <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                    <strong>ProductStar (2022)</strong> — Product Management
-                </div>
-                <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
-                    <strong>Сбербанк Корп. Университет (2018)</strong> — Управление проектами
-                </div>
-                <div>
-                    <strong>Оренбургский Гос. Университет (2015, 2018)</strong> — Экономика и Финансы
-                </div>
+        <footer class="contact-section fade-in-section glass-card">
+            <h2 style="margin-bottom: 20px;">Контакты</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Открыт к предложениям и новым вызовам</p>
+            <div class="contact-links-container">
+                <a href="mailto:kanalievdu@bk.ru" class="contact-link">kanalievdu@bk.ru</a>
+                <a href="tel:+79198431003" class="contact-link">+7 (919) 843-10-03</a>
             </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contact-grid">
-                <a href="tel:+79198431003" class="contact-box">
-                    <span>📞</span>
-                    <h3>Телефон</h3>
-                    <p>+7 (919) 843-10-03</p>
-                </a>
-                <a href="mailto:kanalievdu@bk.ru" class="contact-box">
-                    <span>✉️</span>
-                    <h3>Email</h3>
-                    <p>kanalievdu@bk.ru</p>
-                </a>
-                <div class="contact-box">
-                    <span>📍</span>
-                    <h3>Локация</h3>
-                    <p>Москва, Россия</p>
-                </div>
+            <div style="margin-top: 60px; font-size: 0.9rem; color: #94a3b8;">
+                &copy; 2025 Каналиев Данияр. Москва.
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <footer style="text-align: center; padding: 40px; color: var(--text-secondary);">
-        <p>&copy; 2025 Данияр Каналиев</p>
-    </footer>
+    </div>
 
+    <script>
+        // Плавное появление блоков при скролле
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
